@@ -1,0 +1,165 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* Гарантируем скрытие элементов с атрибутом hidden */
+[hidden] {
+    display: none !important;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #1e3c72, #2a5298);
+    font-family: 'Segoe UI', Arial, sans-serif;
+    color: #fff;
+}
+
+.game-container {
+    text-align: center;
+    padding: 20px;
+}
+
+.game-title {
+    margin-bottom: 20px;
+    font-size: 2rem;
+}
+
+.score-panel {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    margin-bottom: 15px;
+    font-size: 1.2rem;
+}
+
+.score, .record {
+    background: rgba(255, 255, 255, 0.15);
+    padding: 8px 16px;
+    border-radius: 8px;
+    min-width: 130px;
+}
+
+/* ---------- Настройки ---------- */
+.settings {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 15px;
+    padding: 10px 16px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    flex-wrap: wrap;
+}
+
+.setting {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.95rem;
+    cursor: pointer;
+    user-select: none;
+}
+
+.setting input[type="number"] {
+    width: 60px;
+    padding: 4px 6px;
+    border-radius: 4px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.15);
+    color: #fff;
+    font-size: 0.95rem;
+    text-align: center;
+}
+
+.setting input[type="number"]:focus {
+    outline: 2px solid #60a5fa;
+}
+
+.setting input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+}
+
+.settings.disabled {
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+/* ---------- Игровое поле ---------- */
+.restart-btn {
+    margin: 16px auto;
+    display: block;
+    padding: 12px 24px;
+    font-size: 1rem;
+    background: #4ade80;
+    color: #0f2547;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: transform 0.1s, background 0.2s;
+}
+
+.restart-btn:hover {
+    background: #22c55e;
+    transform: translateY(-2px);
+}
+
+.game-field {
+    display: grid;
+    grid-template-columns: repeat(var(--cols, 10), 30px);
+    grid-template-rows: repeat(var(--rows, 10), 30px);
+    gap: 2px;
+    width: fit-content;
+    background: #0f2547;
+    padding: 6px;
+    border-radius: 10px;
+    margin: 0 auto;
+    user-select: none;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+}
+
+.cell {
+    background: #24406b;
+    border-radius: 4px;
+    transition: background 0.1s;
+}
+
+.cell.snake {
+    background: #4ade80;
+    box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.3);
+}
+
+.cell.snake-head {
+    background: #22c55e;
+    border: 2px solid #fff;
+}
+
+.cell.apple {
+    background: #24406b;
+    position: relative;
+}
+
+.cell.apple::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 70%;
+    height: 70%;
+    background: radial-gradient(circle at 30% 30%, #ff6b6b, #c92a2a);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.hint {
+    margin-top: 15px;
+    opacity: 0.8;
+    font-size: 0.9rem;
+}
